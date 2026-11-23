@@ -28,6 +28,11 @@ function sitemap(): Plugin {
   };
 }
 
+// Theo quy ước của Readdy: BASE_PATH cho bản xem trước, xuất ra thư mục out/
+const base = process.env.BASE_PATH || '/';
+
 export default defineConfig({
+  base,
   plugins: [react(), sitemap()],
+  build: { outDir: 'out' },
 });
