@@ -17,7 +17,7 @@ Vite + React + TypeScript + Tailwind. Toàn bộ nội dung nằm trong `src/dat
 ```bash
 npm install
 npm run dev     # chạy thử
-npm run build   # xuất bản ra out/ (theo quy ước Readdy) (tự sinh sitemap.xml, robots.txt)
+npm run build   # xuất bản ra out/, đồng thời cập nhật public/sitemap.xml + robots.txt — chạy trước khi đẩy lên GitHub (tự sinh sitemap.xml, robots.txt)
 ```
 
 Triển khai: đẩy lên GitHub → trong Readdy bấm **Pull** → **Publish**. Bản cũ vẫn nằm trong lịch sử phiên bản của Readdy.

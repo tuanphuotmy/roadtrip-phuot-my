@@ -1,3 +1,4 @@
+import { writeFileSync } from 'node:fs';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { SITE } from './src/data/site';
@@ -6,12 +7,12 @@ import { DESTINATIONS } from './src/data/destinations';
 import { POSTS } from './src/data/posts';
 import { GROUPS } from './src/data/taxonomy';
 
-// Sinh sitemap.xml + robots.txt từ dữ liệu: thêm tour/bài mới là sitemap tự cập nhật.
+// Sinh sitemap.xml + robots.txt từ dữ liệu vào public/ mỗi lần dựng (Readdy chỉ phục vụ file có sẵn trong public/).
 function sitemap(): Plugin {
   return {
     name: 'phuotmy-sitemap',
     apply: 'build',
-    generateBundle() {
+    buildStart() {
       const paths = [
         '/', '/tour', '/diem-den', '/blog', '/goc-chia-se', '/ve-phuot-my', '/dai-ly', '/lien-he',
         ...Object.entries(GROUPS).flatMap(([g, v]) => v.terms.map((t) => `/${g}/${t.slug}`)),
@@ -22,8 +23,8 @@ function sitemap(): Plugin {
       const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${paths
         .map((p) => `  <url><loc>${SITE.url}${p}</loc></url>`)
         .join('\n')}\n</urlset>\n`;
-      this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: xml });
-      this.emitFile({ type: 'asset', fileName: 'robots.txt', source: `User-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n` });
+      writeFileSync('public/sitemap.xml', xml);
+      writeFileSync('public/robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
     },
   };
 }
