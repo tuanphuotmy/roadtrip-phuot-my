@@ -30,8 +30,15 @@ function sitemap(): Plugin {
 
 // Theo quy ước của Readdy: BASE_PATH cho bản xem trước, xuất ra thư mục out/
 const base = process.env.BASE_PATH || '/';
+const isPreview = process.env.IS_PREVIEW ? true : false;
 
 export default defineConfig({
+  define: {
+    __BASE_PATH__: JSON.stringify(base),
+    __IS_PREVIEW__: JSON.stringify(isPreview),
+    __READDY_PROJECT_ID__: JSON.stringify(process.env.PROJECT_ID || ''),
+    __READDY_VERSION_ID__: JSON.stringify(process.env.VERSION_ID || ''),
+  },
   base,
   plugins: [react(), sitemap()],
   build: { outDir: 'out' },
