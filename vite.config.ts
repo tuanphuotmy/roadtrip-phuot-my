@@ -1,5 +1,5 @@
 import { defineConfig, type Plugin } from 'vite';
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 import { SITE } from './src/data/site';
 import { TOURS } from './src/data/tours';
 import { DESTINATIONS } from './src/data/destinations';
