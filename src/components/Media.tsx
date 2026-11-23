@@ -1,6 +1,6 @@
 import { MEDIA, type MediaKey, type IllusTheme } from '../data/media';
 
-const B = import.meta.env.BASE_URL; // '/' khi chạy thật
+import { asset } from '../data/asset';
 
 // Hiển thị ảnh thật (WebP 2 cỡ) hoặc ảnh minh hoạ vẽ bằng màu thương hiệu.
 // Ảnh minh hoạ luôn có nhãn "Ảnh minh hoạ" để khách không nhầm là ảnh thật.
@@ -27,8 +27,8 @@ export function Media({ k, className = '', sizes = '(max-width: 768px) 100vw, 50
   return (
     <figure className={`relative overflow-hidden ${className}`}>
       <img
-        src={`${B}media/${m.file}.webp`}
-        srcSet={`${B}media/${m.file}-sm.webp 800w, ${B}media/${m.file}.webp 1600w`}
+        src={asset(`media/${m.file}.webp`)}
+        srcSet={`${asset(`media/${m.file}-sm.webp`)} 800w, ${asset(`media/${m.file}.webp`)} 1600w`}
         sizes={sizes}
         alt={m.alt}
         width={m.w}

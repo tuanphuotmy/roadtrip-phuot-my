@@ -1,3 +1,4 @@
+import { asset } from '../data/asset';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { NAV } from '../data/nav';
@@ -34,7 +35,7 @@ function Header({ onMenu }: { onMenu: () => void }) {
     <header className="sticky top-0 z-30 bg-navy text-cream shadow">
       <div className="mx-auto flex h-16 max-w-page items-center gap-2 px-3 lg:h-[72px] lg:px-6">
         <Link to="/" aria-label="Phượt Mỹ – trang chủ" className="relative z-10 -mb-8 shrink-0 self-start pt-1 lg:-mb-10">
-          <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="Logo Phượt Mỹ – Vui khỏi nghĩ" width={96} height={91} className="h-auto w-[96px] drop-shadow lg:w-[104px]" />
+          <img src={asset('logo.webp')} alt="Logo Phượt Mỹ – Vui khỏi nghĩ" width={96} height={91} className="h-auto w-[96px] drop-shadow lg:w-[104px]" />
         </Link>
         <nav aria-label="Menu chính" className="ml-6 hidden flex-1 items-center gap-1 lg:flex">
           {NAV.map((g) => (
@@ -121,7 +122,7 @@ function Footer() {
     <footer className="bg-navy text-cream">
       <div className="mx-auto grid max-w-page gap-8 px-4 py-10 md:grid-cols-4 lg:px-6">
         <div className="md:col-span-2">
-          <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="Logo Phượt Mỹ" width={110} height={104} loading="lazy" className="h-auto w-[110px]" />
+          <img src={asset('logo.webp')} alt="Logo Phượt Mỹ" width={110} height={104} loading="lazy" className="h-auto w-[110px]" />
           <p className="mt-3 max-w-md text-sm leading-6">{SITE.motto}. {SITE.tagline}.</p>
           <address className="mt-4 text-sm not-italic leading-7">
             <strong>{SITE.legalName}</strong><br />
